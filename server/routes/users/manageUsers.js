@@ -31,6 +31,7 @@ router.get("/userFetch", authenticateMiddleware, async (req, res) => {
 
     // Send the modified user data as a JSON response
     res.status(200).json(usersWithFullName);
+    
   } catch (error) {
     console.error("Error fetching user data:", error);
     res

@@ -7,7 +7,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ManageUserModal from "../modal/ManageUserPop.js";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import axiosInstance from "../config/axios-instance.js";
+// import axiosInstance from "../config/axios-instance.js";
+import axios from "axios";
 
 const UserGrid = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -30,7 +31,7 @@ const UserGrid = () => {
     // Fetch user data from your server when the component mounts
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get("/users/userFetch");
+        const response = await axios.get("localhost:5000/users/userFetch");
         const data = response.data;
         const formattedData = data.map((user) => ({
           ...user,

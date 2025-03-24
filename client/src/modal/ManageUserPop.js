@@ -83,7 +83,7 @@ const AddUserDialog = ({ open, onClose }) => {
   const onSubmit = async (data, e) => {
     try {
       // Make an HTTP POST request to your API endpoint
-      await axios.post("http://localhost:8080/auth/register", data);
+      await axios.post("http://localhost:5000/auth/register", data);
       // Check if Snackbar is not open before setting the success message
 
       // Update snackbar state
@@ -169,7 +169,7 @@ const AddUserDialog = ({ open, onClose }) => {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">+63</InputAdornment>
+                <InputAdornment position="start">+254</InputAdornment>
               ),
               placeholder: "995 215 5436",
             }}

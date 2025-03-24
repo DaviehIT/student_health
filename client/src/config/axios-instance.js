@@ -8,7 +8,7 @@ const getAuthToken = () => {
 
 // Create an Axios instance with default headers
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000", // Adjust the base URL to match your API server
+  baseURL: "http://localhost:5000/", // Adjust the base URL to match your API server
   headers: {
     "Content-Type": "application/json",
   },

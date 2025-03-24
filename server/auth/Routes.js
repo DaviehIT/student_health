@@ -3,11 +3,13 @@ const express = require("express");
 const authController = require("../controllers/authController.js");
 const authenticateMiddleware = require("./authenticateMiddleware.js");
 const refreshTokenMiddleware = require("./refreshTokenMiddleware.js");
+const fetchmedicine = require("../models/MedicineInventory.js");
+const Medicine = require("../models/MedicineInventory.js");
 const router = express.Router();
 
 // Signup route
 router.post("/register", authController.register);
-
+// router.post("/fetchmedicine", MedicineInventory.fetchmedicine);
 // Login route
 router.post("/login", authController.login);
 
