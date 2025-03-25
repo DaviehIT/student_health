@@ -30,7 +30,8 @@ const Grid = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(
-        "student-profile"
+        "/student-profile/student-profile"
+   
       );
       setCollectionData(response.data);
     } catch (error) {

@@ -19,8 +19,9 @@ import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormHelperText from "@mui/material/FormHelperText";
+// import axios from "axios";
 
-const MedicineInventoryForm = (props) => {
+const StudentProfileForm = (props) => {
   const { open = false, onClose, addNewDocument, selectedDocument } = props;
   const [selectedBirthDate, setSelectedBirthDate] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -79,11 +80,13 @@ const MedicineInventoryForm = (props) => {
     if (!data.nameExtension) {
       data.nameExtension = "";
     }
+    console.log("Sending data to API:", data);
     try {
       const response = await axiosInstance.post(
-        "student-profile",
+        "student-profile/student-profile",
         data
       );
+      console.log("API Response:", response);
       if (response.data.product) {
         if (typeof addNewDocument === "function") {
           addNewDocument(response.data);
@@ -112,7 +115,7 @@ const MedicineInventoryForm = (props) => {
       if (selectedDocument._id) {
         try {
           const response = await axiosInstance.put(
-            `student-profile/${selectedDocument._id}`,
+            `student-profile/student-profile/${selectedDocument._id}`,
             data
           );
           if (response.data.product) {
@@ -414,4 +417,4 @@ const MedicineInventoryForm = (props) => {
   );
 };
 
-export default MedicineInventoryForm;
+export default StudentProfileForm;

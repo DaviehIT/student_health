@@ -230,9 +230,9 @@ const Sidebar = () => {
           ]}
         />
         <SidebarLink
-          to="/students-profile"
+          to="/student-profile"
           primary="Student Profile"
-          isActive={isActive("/students-profile")}
+          isActive={isActive("/student-profile")}
           icon={<Person2Outlined />}
         />
         <SidebarLink

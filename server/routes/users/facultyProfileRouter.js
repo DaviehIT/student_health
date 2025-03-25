@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(authenticate);
 
 // CREATE/ POST
-router.post("/class-profile", async (req, res) => {
+router.post("/faculty-profile", async (req, res) => {
   try {
     const { employeeId, lastName, firstName, middleName, nameExtension, gender, birthDate, contact, role, address, status} =
       req.body;
@@ -38,7 +38,7 @@ router.post("/class-profile", async (req, res) => {
 });
 
 // RETRIEVE/ GET All
-router.get("/class-profile", async (req, res) => {
+router.get("/fuculty-profile", async (req, res) => {
   try {
     const existingData = await Schema.find();
     
