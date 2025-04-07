@@ -19,7 +19,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
 
-import schoolLogo from "./Data/DonjuanTransparent.png";
+import schoolLogo from "./Data/TumMain.png";
 import clinicLogo from "./Data/medical.png";
 
 const LoginPage = () => {
@@ -144,7 +144,7 @@ const LoginPage = () => {
               />
             </div>
             <h1 className="text-lg font-semibold">
-              Don Juan Dela Cruz Central Elementary School
+              TUM Wellness Center
             </h1>
             <div className="flex items-start">
               <h2 className="text-4xl font-bold">Login</h2>

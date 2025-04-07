@@ -27,7 +27,7 @@ import {
 import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
-import schoolLogo from "./Data/DonjuanTransparent.png";
+import schoolLogo from "./Data/TumMain.png";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -206,7 +206,7 @@ const Sidebar = () => {
           </div>
           <div className="text-center mb-6 text-white">
             <h5 className="text-sm font-semibold">
-              Don Juan Dela Cruz Central Elementary School
+              TUM Wellness Center
             </h5>
           </div>
         </>

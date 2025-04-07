@@ -17,7 +17,7 @@ const selectedFields = [
   "approved",
 ];
 
-// Route to fetch user data from MongoDB
+// Route to fetch all users
 router.get("/userFetch", authenticateMiddleware, async (req, res) => {
   try {
     // Fetch users from MongoDB with selected fields
@@ -31,26 +31,43 @@ router.get("/userFetch", authenticateMiddleware, async (req, res) => {
 
     // Send the modified user data as a JSON response
     res.status(200).json(usersWithFullName);
-    
   } catch (error) {
     console.error("Error fetching user data:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred", details: error.message });
+    res.status(500).json({ error: "An error occurred", details: error.message });
   }
 });
 
-// Route to update the 'approved' status of a user
-router.put("/approveUser/:id", authenticateMiddleware, async (req, res) => {
+// Route to fetch a specific user by ID (View User)
+router.get("/viewUser/:id", authenticateMiddleware, async (req, res) => {
   const userId = req.params.id;
 
   try {
-    // Find the user by ID and update the 'approved' field
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { approved: true },
-      { new: true }
-    );
+    // Find the user by ID
+    const user = await User.findById(userId, selectedFields);
+
+    if (!user) {
+      // User with the provided ID was not found
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Send the user data as a JSON response
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).json({ error: "An error occurred", details: error.message });
+  }
+});
+
+// Route to update a user's details (Update User)
+router.put("/updateUser/:id", authenticateMiddleware, async (req, res) => {
+  const userId = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    // Find the user by ID and update their details
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {
+      new: true, // Return the updated document
+    });
 
     if (!updatedUser) {
       // User with the provided ID was not found
@@ -58,21 +75,19 @@ router.put("/approveUser/:id", authenticateMiddleware, async (req, res) => {
     }
 
     // Send the updated user as a JSON response
-    res.status(200).json(updatedUser);
+    res.status(200).json({ message: "User updated successfully", user: updatedUser });
   } catch (error) {
-    console.error("Error approving user:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred", details: error.message });
+    console.error("Error updating user:", error);
+    res.status(500).json({ error: "An error occurred", details: error.message });
   }
 });
 
-// Route to delete a user by ID
+// Route to delete a user by ID (Delete User)
 router.delete("/deleteUser/:id", authenticateMiddleware, async (req, res) => {
   const userId = req.params.id;
 
   try {
-    // Find the user by ID and delete it
+    // Find the user by ID and delete them
     const deletedUser = await User.findByIdAndDelete(userId);
 
     if (!deletedUser) {
@@ -84,12 +99,8 @@ router.delete("/deleteUser/:id", authenticateMiddleware, async (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred", details: error.message });
+    res.status(500).json({ error: "An error occurred", details: error.message });
   }
 });
-
-// Add more routes for fetching specific user data, updates, or other actions
 
 module.exports = router;
